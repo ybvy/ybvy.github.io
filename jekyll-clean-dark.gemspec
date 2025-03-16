@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Customizable dark theme for Jekyll.}
   spec.description   = "Customizable dark theme for Jekyll. Supports tags, comments, analytics, share buttons."
-  spec.homepage      = "https://github.com/streetturtle/jekyll-clean-dark"
+  spec.homepage      = "https://github.com/ybvy.github.io"
   spec.license       = "MIT"
 
   spec.metadata["plugin_type"] = "theme"
