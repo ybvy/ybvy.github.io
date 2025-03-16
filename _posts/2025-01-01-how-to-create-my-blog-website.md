@@ -6,6 +6,7 @@ date: 2025-01-01
 comments: true
 description: Cách tôi tạo ra trang blog này bằng cách sử dụng sử dụng Github pages và Giscus.
 categories: introduce
+toc: true
 tags: 
 - github
 - web
