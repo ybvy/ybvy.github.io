@@ -44,11 +44,14 @@ Như giời thiệu ở trên, mình sẽ sử dụng Giscus để tạo chức 
 2. Ứng dụng giscus đã được cài đặt, nếu không, khách truy cập sẽ không thể bình luận và phản hồi.
 3. Tính năng Thảo luận được bật bằng cách bật tính năng này cho kho lưu trữ của bạn.
 Vào **Setting** -> **Genaral** -> **bật Discusions**
+
 ![Discusions](/assets/images/posts/2025-01-01-how-to-create-my-blog-website/enable_discusion.png)
+
 Tiếp theo cần cần tải Giscus app ở [install Giscus app](https://github.com/apps/giscus)
 Sau khi tải Giscus, bạn lựa chọn option phù hợp cho phần bình luận của mình.
 Truy cập [config Giscus](https://giscus.app/). Cấu nhập username/repository vào repository của phần Configuration.
 Cuối cùng dán script vào cuối cùng của mỗi bài viết cần bình luận.
+
 ![Script](/assets//images/posts/2025-01-01-how-to-create-my-blog-website/code.png)
 
 Good luck!🍀🍀🍀
