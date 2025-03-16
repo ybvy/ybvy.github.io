@@ -12,32 +12,32 @@ tags:
 - web
 ---
 
-## Giới thiệu
+# Giới thiệu
 Hi. Nay mình sẽ chia sẽ cách mình đã tạo ra trang Blog này. Mình sử dụng 2 nền tảng miễn phí là Github pages và Giscus.
 
-### Github pages:
+## Github pages:
 Github pages là một web hosting service được phát triển bởi Github để lưu trữ các trang web tĩnh phục vụ cho việc viết blog, tài liệu cho dự án, hoặc thậm chí là viết sách (Nguồn wiki). Github pages chủ yếu dựa trên nền tảng phần mềm Jekyll - một nền tảng viết bằng Ruby được phát triển bởi Tom Preston-Werner.
 Mình thấy Github pages thực sự ngon, bổ, miễn phí. Dùng để viết blog thì quá ok, sẽ kết hợp với Giscus để tương tác với mọi người.
 
-### Giscus:
+## Giscus:
 Giscus là một ứng dụng được phát triển để đơn giản hóa và tối ưu hóa trải nghiệm thảo luận và bình luận cho các dự án trên GitHub. Với Giscus, bạn có thể tích hợp một hệ thống bình luận trực tiếp vào trang web hoặc ứng dụng của bạn, cho phép người dùng thảo luận, theo dõi vấn đề (issues), và tương tác với cộng đồng của dự án một cách thuận tiện. 
 Do Github pages dùng để lưu trữ các web tĩnh nên phần cơ sở dữ liệu sẽ không được thêm vào, nếu có thì bạn có thể sử dụng Firebase để làm cơ sở dữ liệu.
 Giscus nó miễn phí, không quảng cáo, cài đặt dễ dàng. 
 
-## Thực hiện
-### Chọn Themes
+# Thực hiện
+## Chọn Themes
 Đầu tiên mình sẽ sử dụng template của Jekyll, các bạn có thể tham khảo các trang này để chọn.
 [jekyllthemes.org](http://jekyllthemes.org/) - [jekyllthemes.io/free](https://jekyllthemes.io/free)
 <img style="width: 100%;" src="/assets/images/posts/2025-01-01-how-to-create-my-blog-website/choose_theme.gif" alt="Choose Theme">
 
-### Lấy Website về 
+## Lấy Website về 
 Ở bước này bạn có thể **Fork** rồi **Clone code** hoặc **Clone code** rồi push lên lại cũng được. Ở đây mình sẽ Fork về và đặt repository là `username.github.io`
 <img style="width: 100%;" src="/assets/images/posts/2025-01-01-how-to-create-my-blog-website/fork.gif" alt="Fork">
 Sau khi Fork về, mình cần setting để nó có thể render ra web.
 ![Setting](/assets/images/posts/2025-01-01-how-to-create-my-blog-website/setting.png)
 Sau khi clone code về bạn cần phải chỉnh sửa một số thông tin, thay đổi thành thông tin của bạn, thường thì nó ở file `_config.yml`
 
-### Thêm chức năng bình luận
+## Thêm chức năng bình luận
 Như giời thiệu ở trên, mình sẽ sử dụng Giscus để tạo chức năng bình luận cho mỗi bài viết.
 Để sử dụng chức năng bình luận thì bạn cần phải đáp ứng 3 yêu cầu sau
 1. Kho lưu trữ là công khai, nếu không, khách truy cập sẽ không thể xem thảo luận.
