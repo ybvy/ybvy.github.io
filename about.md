@@ -4,7 +4,7 @@ title: About ybvy
 shortName: about
 ---
 
-## ybvy(Y Bui)
+# ybvy(Y Bui)
 Student
 Da Nang City, Vietnam | buivanyk4@gmail.com | [ybvy.github.io](https://ybvy.github.io)
 
