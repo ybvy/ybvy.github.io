@@ -32,7 +32,7 @@ Trên Windows, raw sockets bị giới hạn, đặc biệt từ Windows 10 tr�
 * Tắt promiscuous mode sau khi hoàn tất
 
 ## Ví dụ mã Python
->python
+>Python
 {% highlight python linenos %}
 import socket
 import os
@@ -70,7 +70,7 @@ Linux cung cấp nhiều quyền kiểm soát hơn đối với raw sockets so v
 * Nhận và phân tích gói tin
 
 ## Ví dụ mã Python
->python
+>Python
 {% highlight python linenos %}
 import socket
 
