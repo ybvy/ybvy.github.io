@@ -33,7 +33,7 @@ Trên Windows, raw sockets bị giới hạn, đặc biệt từ Windows 10 tr�
 
 ## Ví dụ mã Python
 >python
-{% highlight python %}
+{% highlight python linenos %}
 import socket
 import os
 
@@ -71,7 +71,7 @@ Linux cung cấp nhiều quyền kiểm soát hơn đối với raw sockets so v
 
 ## Ví dụ mã Python
 >python
-{% highlight python %}
+{% highlight python linenos %}
 import socket
 
 sniffer = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_ICMP)
