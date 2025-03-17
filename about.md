@@ -12,9 +12,9 @@ Da Nang City, Vietnam | buivanyk4@gmail.com | [ybvy.github.io](https://ybvy.gith
 
 # SKILLS
 ## Programing
-
+Python, Javascript, Bash.
 ## Web Application Security
-
+> While box testing
 ## EXPERIENCE
 
 ## EDUCATION
