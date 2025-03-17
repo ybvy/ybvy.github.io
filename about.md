@@ -4,27 +4,21 @@ title: About ybvy
 shortName: about
 ---
 
-<h1 class="subject">{{ page.title }}</h1>
+## ybvy(Y Bui)
+Student
+Da Nang City, Vietnam | buivanyk4@gmail.com | ybvy.github.io
 
+# EXECUTIVE SUMMARY
 
-|  Name | ybvy | in VietNam |
-|---|---|
-| Current work | student in VKU |
-| Programming languages  | python, golang, shell
-| Frameworks | no |
-| Tool | Nmap, Amass, FFUF, Burpsuite
+# SKILLS
+## Programing
 
+## Web Application Security
 
+## EXPERIENCE
 
----
-Welcome to my blog!
+## EDUCATION
 
-Hi there! I’m ybvy (Bui Van Y), the person behind this little corner of the internet. 
+## PUBLICATION
 
-
-This blog is a space where I share my `thoughts`, `experiences`, and `passions` with readers from all walks of life.
-Here, you’ll find content focused on: `technology`, `personal development`, `learning`, etc...
-
-My goal is to bring you `stories`, `insights`, and `daily inspiration`. I hope this blog becomes a source of value for you.
-
-Thanks!
+## BUGS HUNTING
