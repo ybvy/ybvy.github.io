@@ -30,8 +30,9 @@ Trên Windows, raw sockets bị giới hạn, đặc biệt từ Windows 10 tr�
 * Bật chế độ promiscuous mode bằng IOCTL (SIO_RCVALL)
 * Bắt gói tin và phân tích dữ liệu
 * Tắt promiscuous mode sau khi hoàn tất
+
 ## Ví dụ mã Python
->Python
+>python
 import socket
 import os
 
@@ -57,4 +58,21 @@ def main():
 
 if __name__ == '__main__':
     main()
+{% endhighlight %}
+
+# Packet Sniffing trên Linux
+Linux cung cấp nhiều quyền kiểm soát hơn đối với raw sockets so với Windows, giúp dễ dàng thực hiện packet sniffing.
+
+## Các bước thực hiện
+* Tạo raw socket với giao thức IPPROTO_ICMP
+* Bind socket vào giao diện mạng
+* Nhận và phân tích gói tin
+
+## Ví dụ mã Python
+>python
+import socket
+
+sniffer = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_ICMP)
+sniffer.bind(('0.0.0.0', 0))
+print(sniffer.recvfrom(65535))
 {% endhighlight %}
