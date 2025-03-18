@@ -85,3 +85,87 @@ def main():
 if __name__ == "__main__":
     main()
 {% endhighlight %}
+
+# Giải thích mã
+## Định nghĩa địa chỉ IP và tạo socket
+* Chương trình đặt biến HOST là địa chỉ IP của máy tính cục bộ.
+* Sau đó, nó tạo một raw socket với tham số phù hợp để bắt gói tin từ card mạng.
+
+{% highlight python %}
+host = "192.168.1.13"  # Địa chỉ máy tính cục bộ
+sniffer = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket_protocol)
+{% endhighlight %}
+
+## Sự khác biệt giữa Windows và Linux
+* Windows cho phép bắt tất cả các gói tin (TCP, UDP, ICMP, v.v.).
+* Linux/macOS chỉ cho phép người dùng thông thường bắt gói ICMP (ping) trừ khi chạy bằng quyền root.
+
+{% highlight python %}
+socket_protocol = socket.IPPROTO_IP if os.name == "nt" else socket.IPPROTO_ICMP
+{% endhighlight %}
+
+## Chế độ Promiscuous Mode và yêu cầu quyền admin
+* Promiscuous Mode là chế độ giúp card mạng bắt tất cả gói tin, ngay cả những gói không gửi đến máy của bạn.
+* Cần quyền admin trên Windows hoặc root trên Linux để bật chế độ này.
+* Nếu không bật, chỉ có thể bắt gói tin dành riêng cho máy của bạn.
+
+## Bật tùy chọn IP Header trong gói tin
+* Khi nhận một gói tin, đôi khi hệ thống sẽ tự động loại bỏ phần tiêu đề IP (IP header).
+* Để đảm bảo gói tin vẫn giữ header đầy đủ, cần dùng tùy chọn `IP_HDRINCL`.
+
+{% highlight python %}
+sniffer.setsockopt(socket.IPPROTO_IP, socket.IP_HDRINCL, 1)
+{% endhighlight %}
+
+## Bật chế độ Promiscuous Mode trên Windows
+* Windows cần gửi lệnh IOCTL để kích hoạt Promiscuous Mode.
+* Lệnh này nói với driver của card mạng rằng phải bắt tất cả gói tin, thay vì chỉ những gói dành riêng cho máy.
+
+{% highlight python %}
+if os.name == "nt":
+    sniffer.ioctl(socket.SIO_RCVALL, socket.RCVALL_ON)
+{% endhighlight %}
+
+* Trên Linux, không cần lệnh này vì SOCK_RAW đã đủ mạnh để bắt gói tin.
+
+## Nhận và in dữ liệu thô của gói tin
+* Chương trình bắt gói tin và in ra dạng raw (chưa giải mã).
+* Mục đích là kiểm tra xem sniffer có hoạt động đúng không.
+
+{% highlight python %}
+print(sniffer.recvfrom(65535))
+{% endhighlight %}
+
+* Sau khi chạy, chương trình sẽ in ra dữ liệu dạng byte (b'...').
+
+{% highlight bash %}
+(venv) ┌─[wai@wai]─[~/Documents/Project/Blackhat-python]
+└──╼ $ ping 8.8.8.8 -c 4
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=118 time=24.4 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=118 time=26.9 ms
+64 bytes from 8.8.8.8: icmp_seq=3 ttl=118 time=22.8 ms
+64 bytes from 8.8.8.8: icmp_seq=4 ttl=118 time=25.0 ms
+
+--- 8.8.8.8 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3004ms
+rtt min/avg/max/mdev = 22.785/24.765/26.928/1.482 ms
+{% endhighlight %}
+
+{% highlight bash %}
+(venv) ┌─[wai@wai]─[~/Documents/Project/Blackhat-python]
+└──╼ $ sudo python3 chapter_3/sniffer.py 
+[*] Listening on 192.168.1.13
+[*] Sniffing packets...
+[*] Packet received from ('8.8.8.8', 0):
+b'E \x00T\x00\x00\x00\x00v\x01r\xc4\x08\x08\x08\x08\xc0\xa8\x01\r\x00\x00\xe6\x05\x1d\xb4\x00\x01x\xd2\xd8g\x00\x00\x00\x00\xe07\x0c\x00\x00\x00\x00\x00\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f !"#$%&\'()*+,-./01234567'
+[*] Sniffer stopped.
+{% endhighlight %}
+
+# Tắt chế độ Promiscuous Mode trên Windows
+* Sau khi bắt xong 1 gói tin, nếu đang chạy trên Windows, cần tắt chế độ Promiscuous Mode để tránh lỗi.
+
+{% highlight python %}
+if os.name == "nt":
+    sniffer.ioctl(socket.SIO_RCVALL, socket.RCVALL_OFF)
+{% endhighlight %}
