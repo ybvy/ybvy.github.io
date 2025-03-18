@@ -31,6 +31,7 @@ IP Header là phần tiêu đề của 1 gói tin IP(Internet Protocol) khi truy
 | 7-9 | Để dành | Dự trữ cho các mục đích tương lai |
 | 10-15 | Không hợp lệ | Không được sử dụng chính thức |
 {:.inner-borders}
+
 ---
 ## IHL (Internet Header Length)
 * Vị trí: Octec 0 (Bit 4 -> Bit 7)
