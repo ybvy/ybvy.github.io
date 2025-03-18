@@ -40,8 +40,8 @@ Vì ở đây là 4 bit nên max value là 15(1111) nhưng min value lại là 5
 ### Công thức tính kích thước Header
 {% highlight bash %}
 length(header) = IHL * 4
-min(length(header)) = 5 * 4 = 20 // Header IPV4 chuẩn
-max(length(header)) = 15 * 4 = 60
+min(length(header)) = 5 * 4 = 20(bytes) // Header IPv4 chuẩn
+max(length(header)) = 15 * 4 = 60(bytes) 
 {% endhighlight %}
 
-
+Nếu ở IHL=5 thì chỉ chứa Header IPv4 chuẩn, không có phần Option (giải thích ở dưới). Vì nó chỉ có 20 byte, bắt đầu từ byte 0 đến byte 19, quan sát hình ở trên bạn sẽ thấy phần Option nó xuất hiện từ byte 20.
