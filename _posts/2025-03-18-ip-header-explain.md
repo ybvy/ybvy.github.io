@@ -60,7 +60,7 @@ DSCP (6 bit) là một phần của trường TOS, được sử dụng để ph
 * Vị trí: 6 bit đầu tiên của byte thứ 2 trong IPv4 header.
 * Chức năng: Giúp các bộ định tuyến (router) ưu tiên xử lý một số gói tin nhất định (ví dụ: thoại, video, dữ liệu quan trọng).
 
-| Tên                     | Giá trị DSCP (Decimal) | Binary  | Ứng dụng |
+| Tên                     |  Decimal | Binary  | Ứng dụng |
 |-------------------------|----------------------|---------|------------|
 | Default                 | 0                    | 000000  | Không ưu tiên |
 | CS0 (Default)           | 0                    | 000000  | Lưu lượng bình thường |
