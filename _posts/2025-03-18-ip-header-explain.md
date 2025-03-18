@@ -14,7 +14,7 @@ tags:
 # Giới thiệu
 IP Header là phần tiêu đề của 1 gói tin IP(Internet Protocol) khi truyền đi trong mạng hay internet. Nó gồm nhiểu trường khác nhau, chứa các thông tin quan trọng để định tuyến và truyền dữ liệu qua mạng. Mỗi gói tin IP bao gồm 2 phần chính:
 * IP Header
-* Data
+* Payload
 
 ![IP Header](/assets/images/posts/2025-03-18-ip-header-explain/ip_header.png)
 
@@ -54,9 +54,10 @@ TOS (Type of Service) là một trường 8 bit trong IPv4 Header, được sử
 * Chức năng: Được dùng để kiểm soát độ ưu tiên, độ trễ, thông lượng và độ tin cậy của gói tin.
 * Bao gồm 2 thành phần chính: DSCP và ECN
 
+---
+
 ### DSCP (Differentiated Services Code Point)
 DSCP (6 bit) là một phần của trường TOS, được sử dụng để phân loại mức độ ưu tiên của gói tin trong mạng.
-
 * Vị trí: 6 bit đầu tiên của byte thứ 2 trong IPv4 header.
 * Chức năng: Giúp các bộ định tuyến (router) ưu tiên xử lý một số gói tin nhất định (ví dụ: thoại, video, dữ liệu quan trọng).
 
@@ -75,9 +76,11 @@ DSCP (6 bit) là một phần của trường TOS, được sử dụng để ph
 | CS7 (Reserved)          | 56                   | 111000  | Dự trữ |
 {:.inner-borders}
 
+---
+
 ###  ECN (Explicit Congestion Notification) 
 ECN là một cơ chế giúp phát hiện và kiểm soát tắc nghẽn mạng mà không cần drop (hủy bỏ) gói tin.
-* ECN là 2 bit cuối cùng của byte DSCP/ECN trong IP Header.
+* Vị trí: ECN là 2 bit cuối cùng của byte DSCP/ECN trong IP Header.
 * Ứng dụng: Hỗ trợ kiểm soát tắc nghẽn trong TCP/IP mà không mất gói tin.
 
 | ECN Value | Binary | Ý nghĩa |
@@ -88,6 +91,27 @@ ECN là một cơ chế giúp phát hiện và kiểm soát tắc nghẽn mạng
 | 11        | 11     | **CE (Congestion Experienced)** – Xác nhận tắc nghẽn |
 
 ---
+
+## Total Length
+Total Length là một trường 16-bit trong IP Header.
+* Vị trí: Thuộc byte 2 và 3 (Bit 16 -> Bit 31)
+* Úng dụng: Biểu thị tổng kích thước của toàn bộ gói tin IP, bao gồm Header và Payload (dữ liệu).
+* Giá trị tối thiểu: 20 bytes (khi chỉ có IP Header, không có dữ liệu).
+* Giá trị tối đa: 65,535 bytes (giới hạn bởi kích thước 16-bit).
+
+### Công thức tính kích thước Total Length
+{% highlight bash %}
+Total Length=IP Header Length+Payload Length
+{% endhighlight %}
+
+Nếu Total Length > MTU (Maximum Transmission Unit), gói tin sẽ bị chia nhỏ (fragmentation)
+
+| Kích thước (Byte)  | Ý nghĩa |
+|-------------------|----------------------------------|
+| 20 - 1,500       | Kích thước phổ biến trong mạng Ethernet (MTU = 1500 bytes). |
+| 1,500 - 65,535   | Yêu cầu phân mảnh do vượt quá MTU. |
+| > 65,535         | Không hợp lệ trong IPv4. |
+{:.inner-borders}
 
 <!-- <script src="https://giscus.app/client.js"
         data-repo="ybvy/ybvy.github.io"
