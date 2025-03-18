@@ -55,7 +55,6 @@ TOS (Type of Service) là một trường 8 bit trong IPv4 Header, được sử
 * Bao gồm 2 thành phần chính: DSCP và ECN
 
 ---
-
 ### DSCP (Differentiated Services Code Point)
 DSCP (6 bit) là một phần của trường TOS, được sử dụng để phân loại mức độ ưu tiên của gói tin trong mạng.
 * Vị trí: 6 bit đầu tiên của byte thứ 2 trong IPv4 header.
@@ -77,7 +76,6 @@ DSCP (6 bit) là một phần của trường TOS, được sử dụng để ph
 {:.inner-borders}
 
 ---
-
 ###  ECN (Explicit Congestion Notification) 
 ECN là một cơ chế giúp phát hiện và kiểm soát tắc nghẽn mạng mà không cần drop (hủy bỏ) gói tin.
 * Vị trí: ECN là 2 bit cuối cùng của byte DSCP/ECN trong IP Header.
@@ -91,7 +89,6 @@ ECN là một cơ chế giúp phát hiện và kiểm soát tắc nghẽn mạng
 | 11        | 11     | **CE (Congestion Experienced)** – Xác nhận tắc nghẽn |
 
 ---
-
 ## Total Length
 Total Length là một trường 16-bit trong IP Header.
 * Vị trí: Thuộc byte 2 và 3 (Bit 16 -> Bit 31).
@@ -114,18 +111,17 @@ Nếu Total Length > MTU (Maximum Transmission Unit), gói tin sẽ bị chia nh
 {:.inner-borders}
 
 ---
-
 ## Identification
 Identification (ID) là một trường 16-bit trong IP Header.
 * Vị trí: Thuộc byte 4 và 5 (Bit 31 -> Bit 46).
 * Úng dụng: Dùng để xác định từng gói tin IP riêng lẻ. Khi một gói tin bị phân mảnh, tất cả các mảnh sẽ có cùng ID để bộ thu có thể ghép lại đúng thứ tự.
 
 ---
-
 ## Flags (3) + Fragment Offset (13)
 Flags + Fragment Offset là một trường 16-bit trong IP Header.
 * Vị trí: Nằm ở byte 6 và 7.
 
+---
 ### Flag
 * Vị trí: 3 bit đầu của byte 6 (Bit 47 -> Bit 50).
 * Ứng dụng: Flags giúp xác định xem gói tin có bị phân mảnh hay không.
@@ -152,6 +148,19 @@ Flags + Fragment Offset là một trường 16-bit trong IP Header.
 Nếu Offset = 100, thì vị trí thực = 100 × 8 = 800 bytes.
 Mảnh đầu tiên luôn có Offset = 0.
 
+---
+
+## TTL (Time to Live)
+TTL là một trường 8-bit, nằm ở Byte 8 trong IP Header.
+* Vị trí: Byte 8 (Bit 64 -> Bit 79)
+* Ứng dụng: Giới hạn tuổi thọ của một gói tin trong mạng bằng cách giảm dần mỗi khi nó đi qua một router.
+* Cách hoạt động của TTL:
+
+1. Khi gói tin được gửi đi, TTL được thiết lập với một giá trị nhất định (thường là 64, 128, hoặc 255).
+2. Mỗi lần gói tin đi qua một router, TTL bị giảm 1.
+3. Nếu TTL giảm xuống 0, gói tin bị loại bỏ và router gửi về một ICMP Time Exceeded.
+
+---
 <!-- <script src="https://giscus.app/client.js"
         data-repo="ybvy/ybvy.github.io"
         data-repo-id="R_kgDONiHcVw"
