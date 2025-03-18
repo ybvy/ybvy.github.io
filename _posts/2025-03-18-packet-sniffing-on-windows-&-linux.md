@@ -169,3 +169,7 @@ b'E \x00T\x00\x00\x00\x00v\x01r\xc4\x08\x08\x08\x08\xc0\xa8\x01\r\x00\x00\xe6\x0
 if os.name == "nt":
     sniffer.ioctl(socket.SIO_RCVALL, socket.RCVALL_OFF)
 {% endhighlight %}
+
+[Blackhat Python](https://github.com/bhavyagoel/BlackArch/blob/main/Black%20Hat%20Python%2C%202nd%20Edition%20by%20Justin%20Seitz%20%20Tim%20Arnold%20%5BJustin%20Seitz%5D.pdf)
+
+[Code Blackhat Python](https://github.com/EONRaider/blackhat-python3)
