@@ -19,7 +19,7 @@ IP Header là phần tiêu đề của 1 gói tin IP(Internet Protocol) khi truy
 ![IP Header](/assets/images/posts/2025-03-18-ip-header-explain/ip_header.png)
 
 # Các thành phần của IP Header
-## Version
+## version
 * Vị trí: Octec 0 (4 Bit đầu)
 * Chức năng: Chỉ định phiên bản của IP packet.
 
@@ -31,3 +31,12 @@ IP Header là phần tiêu đề của 1 gói tin IP(Internet Protocol) khi truy
 | 7-9 | Để dành | Dự trữ cho các mục đích tương lai |
 | 10-15 | Không hợp lệ | Không được sử dụng chính thức |
 {:.inner-borders}
+
+## IHL (Internet Header Length)
+* Vị trí: Octec 0 (Bit 4 -> Bit 7)
+* Chức năng: Xác định kích thước của phần Header
+Vì ở đây là 4 bit nên max value là 15(1111) nhưng min value lại là 5(0101)
+* Công thức tính kích header
+{% highligt bash %}
+Length(header) = IHL * 4
+{% endhighlight %}
