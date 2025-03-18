@@ -45,6 +45,7 @@ max(length(header)) = 15 * 4 = 60(bytes)
 {% endhighlight %}
 
 Nếu ở IHL=5 thì chỉ chứa Header IPv4 chuẩn, không có phần Option (giải thích ở dưới). Vì nó chỉ có 20 byte, bắt đầu từ byte 0 đến byte 19, quan sát hình ở trên bạn sẽ thấy rằng phần Option nó xuất hiện từ byte 20.
+
 ---
 ## TOS(Type of Service)
 TOS (Type of Service) là một trường 8 bit trong IPv4 Header, được sử dụng để xác định ưu tiên và chất lượng dịch vụ của gói tin IP.
