@@ -154,7 +154,8 @@ Mảnh đầu tiên luôn có Offset = 0.
 TTL là một trường 8-bit, nằm ở Byte 8 trong IP Header.
 * Vị trí: Byte 8 (Bit 64 -> Bit 79)
 * Ứng dụng: Giới hạn tuổi thọ của một gói tin trong mạng bằng cách giảm dần mỗi khi nó đi qua một router.
-* Cách hoạt động của TTL:
+
+### Cách hoạt động của TTL:
 
 1. Khi gói tin được gửi đi, TTL được thiết lập với một giá trị nhất định (thường là 64, 128, hoặc 255).
 2. Mỗi lần gói tin đi qua một router, TTL bị giảm 1.
@@ -178,6 +179,30 @@ TTL là một trường 8-bit, nằm ở Byte 8 trong IP Header.
 {:.inner-borders}
 
 ---
+
+## Protocol
+Protocol là một trường 8-bit
+* Vị trí: Byte 9 (Bit 80 -> Bit 95)
+* Úng dụng: Xác định giao thức lớp trên mà IP sẽ chuyển tiếp gói tin đến, ví dụ như TCP, UDP, ICMP...
+
+### Một số giá trị phổ biến của Protocol
+
+| Giá trị | Giao thức | Mô tả |
+|---------|----------|-------------------------------|
+| 1       | ICMP     | Giao thức điều khiển, thường dùng trong ping. |
+| 6       | TCP      | Giao thức hướng kết nối, dùng trong HTTP, FTP. |
+| 17      | UDP      | Giao thức không kết nối, dùng trong DNS, VoIP. |
+| 41      | IPv6     | Đóng gói IPv6 trong IPv4. |
+| 47      | GRE      | Giao thức đóng gói, dùng trong VPN. |
+| 50      | ESP      | Mã hóa dữ liệu trong IPSec VPN. |
+| 51      | AH       | Xác thực gói tin trong IPSec VPN. |
+| 89      | OSPF     | Giao thức định tuyến nội bộ. |
+| 132     | SCTP     | Giao thức truyền tải thay thế TCP, hỗ trợ đa luồng. |
+{:.inner-borders}
+
+---
+
+
 <!-- <script src="https://giscus.app/client.js"
         data-repo="ybvy/ybvy.github.io"
         data-repo-id="R_kgDONiHcVw"
