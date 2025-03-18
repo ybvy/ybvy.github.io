@@ -174,3 +174,19 @@ if os.name == "nt":
 [Blackhat Python Book](https://github.com/bhavyagoel/BlackArch/blob/main/Black%20Hat%20Python%2C%202nd%20Edition%20by%20Justin%20Seitz%20%20Tim%20Arnold%20%5BJustin%20Seitz%5D.pdf)
 
 [Blackhat Python Code](https://github.com/EONRaider/blackhat-python3)
+
+<script src="https://giscus.app/client.js"
+        data-repo="ybvy/ybvy.github.io"
+        data-repo-id="R_kgDONiHcVw"
+        data-category="Announcements"
+        data-category-id="DIC_kwDONiHcV84ClolG"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="vi"
+        crossorigin="anonymous"
+        async>
+</script>
