@@ -31,36 +31,6 @@ Trên Windows, raw sockets bị giới hạn, đặc biệt từ Windows 10 tr�
 * Bắt gói tin và phân tích dữ liệu
 * Tắt promiscuous mode sau khi hoàn tất
 
-## Ví dụ mã Python
->Python
-{% highlight python linenos %}
-import socket
-import os
-
-HOST = '192.168.1.203'
-
-def main():
-    if os.name == 'nt':
-        socket_protocol = socket.IPPROTO_IP
-    else:
-        socket_protocol = socket.IPPROTO_ICMP
-
-    sniffer = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket_protocol)
-    sniffer.bind((HOST, 0))
-    sniffer.setsockopt(socket.IPPROTO_IP, socket.IP_HDRINCL, 1)
-    
-    if os.name == 'nt':
-        sniffer.ioctl(socket.SIO_RCVALL, socket.RCVALL_ON)
-    
-    print(sniffer.recvfrom(65565))
-    
-    if os.name == 'nt':
-        sniffer.ioctl(socket.SIO_RCVALL, socket.RCVALL_OFF)
-
-if __name__ == '__main__':
-    main()
-{% endhighlight %}
-
 # Packet Sniffing trên Linux
 Linux cung cấp nhiều quyền kiểm soát hơn đối với raw sockets so với Windows, giúp dễ dàng thực hiện packet sniffing.
 
@@ -73,8 +43,45 @@ Linux cung cấp nhiều quyền kiểm soát hơn đối với raw sockets so v
 >Python
 {% highlight python linenos %}
 import socket
+import os
 
-sniffer = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_ICMP)
-sniffer.bind(('0.0.0.0', 0))
-print(sniffer.recvfrom(65535))
+def create_sniffer():
+    host = "192.168.1.13"
+    print(f"[*] Listening on {host}")
+
+    socket_protocol = socket.IPPROTO_IP if os.name == "nt" else socket.IPPROTO_ICMP
+
+    try:
+        sniffer = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket_protocol)
+        sniffer.bind((host, 0))
+        sniffer.setsockopt(socket.IPPROTO_IP, socket.IP_HDRINCL, 1)
+
+        if os.name == "nt":
+            sniffer.ioctl(socket.SIO_RCVALL, socket.RCVALL_ON)
+
+        return sniffer
+    except socket.error as e:
+        print(f"[!] Error creating socket: {e}")
+        return None
+
+def main():
+    sniffer = create_sniffer()
+    if sniffer:
+        try:
+            print("[*] Sniffing packets...")
+            packet, addr = sniffer.recvfrom(65535)
+            print(f"[*] Packet received from {addr}:")
+            print(packet)
+
+        except KeyboardInterrupt:
+            print("\n[!] Stopping sniffer...")
+
+        finally:
+            if os.name == "nt":
+                sniffer.ioctl(socket.SIO_RCVALL, socket.RCVALL_OFF)
+            sniffer.close()
+            print("[*] Sniffer stopped.")
+
+if __name__ == "__main__":
+    main()
 {% endhighlight %}
