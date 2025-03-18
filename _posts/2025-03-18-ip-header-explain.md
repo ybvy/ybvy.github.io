@@ -202,6 +202,16 @@ Protocol là một trường 8-bit
 
 ---
 
+## Header Checksum
+Header Checksum là một trường 16-bit
+* Vị trí: Nằm ở Byte 10 và 11.
+* Ứng dụng: Header Checksum là một giá trị kiểm tra lỗi, giúp xác định xem header của gói tin IP có bị lỗi trong quá trình truyền hay không.
+
+### Cách hoạt động:
+1. Trước khi gửi đi, bộ gửi tính toán checksum dựa trên toàn bộ IP Header.
+2. Khi nhận gói tin, bộ nhận tính toán lại checksum và so sánh với giá trị checksum trong header.
+* Nếu khớp, gói tin không bị lỗi.
+* Nếu khác, gói tin bị lỗi và sẽ bị loại bỏ.
 
 <!-- <script src="https://giscus.app/client.js"
         data-repo="ybvy/ybvy.github.io"
