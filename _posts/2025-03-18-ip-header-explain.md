@@ -94,7 +94,7 @@ ECN là một cơ chế giúp phát hiện và kiểm soát tắc nghẽn mạng
 
 ## Total Length
 Total Length là một trường 16-bit trong IP Header.
-* Vị trí: Thuộc byte 2 và 3 (Bit 16 -> Bit 31)
+* Vị trí: Thuộc byte 2 và 3 (Bit 16 -> Bit 31).
 * Úng dụng: Biểu thị tổng kích thước của toàn bộ gói tin IP, bao gồm Header và Payload (dữ liệu).
 * Giá trị tối thiểu: 20 bytes (khi chỉ có IP Header, không có dữ liệu).
 * Giá trị tối đa: 65,535 bytes (giới hạn bởi kích thước 16-bit).
@@ -111,6 +111,30 @@ Nếu Total Length > MTU (Maximum Transmission Unit), gói tin sẽ bị chia nh
 | 20 - 1,500       | Kích thước phổ biến trong mạng Ethernet (MTU = 1500 bytes). |
 | 1,500 - 65,535   | Yêu cầu phân mảnh do vượt quá MTU. |
 | > 65,535         | Không hợp lệ trong IPv4. |
+{:.inner-borders}
+
+---
+
+## Identification
+Identification (ID) là một trường 16-bit trong IP Header.
+* Vị trí: Thuộc byte 4 và 5.
+* Úng dụng: Dùng để xác định từng gói tin IP riêng lẻ. Khi một gói tin bị phân mảnh, tất cả các mảnh sẽ có cùng ID để bộ thu có thể ghép lại đúng thứ tự.
+
+---
+
+## Flags (3) + Fragment Offset (13)
+Flags + Fragment Offset là một trường 16-bit trong IP Header.
+* Vị trí: Nằm ở byte 6 và 7.
+
+### Flag
+* Vị trí: 3 bit đầu của byte 6.
+* Ứng dụng: Flags giúp xác định xem gói tin có bị phân mảnh hay không.
+
+| Bit  | Tên                  | Ý nghĩa |
+|------|----------------------|------------------------------------------------|
+| Bit 0 | Reserved            | Luôn bằng **0** (Không sử dụng). |
+| Bit 1 | DF (Don't Fragment) | **1** = Không phân mảnh gói tin.<br>**0** = Cho phép phân mảnh. |
+| Bit 2 | MF (More Fragments) | **1** = Còn nhiều mảnh phía sau.<br>**0** = Đây là mảnh cuối cùng. |
 {:.inner-borders}
 
 <!-- <script src="https://giscus.app/client.js"
