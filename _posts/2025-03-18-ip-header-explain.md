@@ -21,7 +21,7 @@ IP Header là phần tiêu đề của 1 gói tin IP(Internet Protocol) khi truy
 # Các thành phần của IP Header
 ## Version
 * Vị trí: Octec 0 (4 Bit đầu)
-* Chức năng: Chỉ định phiên bản của `IP packet`.
+* Chức năng: Chỉ định phiên bản của IP packet.
 
 | Giá trị | Phiên bản | Mô tả |
 |---------|----------|--------|
@@ -30,3 +30,4 @@ IP Header là phần tiêu đề của 1 gói tin IP(Internet Protocol) khi truy
 | 5 | ST (Internet Stream Protocol, RFC 1819) | Một giao thức thử nghiệm, không được sử dụng rộng rãi |
 | 7-9 | Để dành | Dự trữ cho các mục đích tương lai |
 | 10-15 | Không hợp lệ | Không được sử dụng chính thức |
+{:.inner-borders}
