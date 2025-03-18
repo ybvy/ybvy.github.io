@@ -161,6 +161,23 @@ TTL là một trường 8-bit, nằm ở Byte 8 trong IP Header.
 3. Nếu TTL giảm xuống 0, gói tin bị loại bỏ và router gửi về một ICMP Time Exceeded.
 
 ---
+
+### Ứng dụng của TTL
+* Ngăn chặn vòng lặp mạng: Tránh việc gói tin bị lặp vô hạn nếu có lỗi định tuyến.
+* Kiểm soát thời gian sống của gói tin: Đảm bảo gói tin không tồn tại mãi trong mạng.
+* Công cụ Traceroute: Dựa vào TTL để xác định đường đi của gói tin qua các router.
+
+### Giá trị TTL phổ biến theo hệ điều hành
+
+| Hệ điều hành  | Giá trị TTL mặc định |
+|--------------|----------------------|
+| Windows      | 128                  |
+| Linux/Unix   | 64                   |
+| macOS        | 64                   |
+| Cisco        | 255                  |
+{:.inner-borders}
+
+---
 <!-- <script src="https://giscus.app/client.js"
         data-repo="ybvy/ybvy.github.io"
         data-repo-id="R_kgDONiHcVw"
