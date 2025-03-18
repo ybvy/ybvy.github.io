@@ -137,6 +137,21 @@ Flags + Fragment Offset là một trường 16-bit trong IP Header.
 | Bit 2 | MF (More Fragments) | **1** = Còn nhiều mảnh phía sau.<br>**0** = Đây là mảnh cuối cùng. |
 {:.inner-borders}
 
+---
+### Fragment Offset
+* Vị trí: 13 bit sau của byte 6 (Bit 51 -> Bit 63)
+* Úng dụng: Xác định vị trí của mảnh hiện tại trong gói tin gốc.
+
+| Giá trị | Ý nghĩa |
+|---------|-------------------------------------------------|
+| 0       | Mảnh đầu tiên của gói tin. |
+| n       | Độ dời (offset) của mảnh so với gói tin gốc (tính theo đơn vị **8 byte**). |
+{:.inner-borders}
+
+* Offset được tính theo 8-byte:
+Nếu Offset = 100, thì vị trí thực = 100 × 8 = 800 bytes.
+Mảnh đầu tiên luôn có Offset = 0.
+
 <!-- <script src="https://giscus.app/client.js"
         data-repo="ybvy/ybvy.github.io"
         data-repo-id="R_kgDONiHcVw"
