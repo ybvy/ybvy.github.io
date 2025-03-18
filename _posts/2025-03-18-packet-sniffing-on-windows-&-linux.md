@@ -162,7 +162,7 @@ b'E \x00T\x00\x00\x00\x00v\x01r\xc4\x08\x08\x08\x08\xc0\xa8\x01\r\x00\x00\xe6\x0
 [*] Sniffer stopped.
 {% endhighlight %}
 
-# Tắt chế độ Promiscuous Mode trên Windows
+## Tắt chế độ Promiscuous Mode trên Windows
 * Sau khi bắt xong 1 gói tin, nếu đang chạy trên Windows, cần tắt chế độ Promiscuous Mode để tránh lỗi.
 
 {% highlight python %}
