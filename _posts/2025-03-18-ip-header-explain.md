@@ -35,6 +35,7 @@ IP Header là phần tiêu đề của 1 gói tin IP(Internet Protocol) khi truy
 ## IHL (Internet Header Length)
 * Vị trí: Octec 0 (Bit 4 -> Bit 7)
 * Chức năng: Xác định kích thước của phần Header
+
 Vì ở đây là 4 bit nên max value là 15(1111) nhưng min value lại là 5(0101)
 ### Công thức tính kích thước Header
 {% highlight bash %}
@@ -42,3 +43,5 @@ length(header) = IHL * 4
 min(length(header)) = 5 * 4 = 20 // Header IPV4 chuẩn
 max(length(header)) = 15 * 4 = 60
 {% endhighlight %}
+
+
