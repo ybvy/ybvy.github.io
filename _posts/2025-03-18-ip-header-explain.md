@@ -57,7 +57,7 @@ TOS (Type of Service) là một trường 8 bit trong IPv4 Header, được sử
 ---
 ### DSCP (Differentiated Services Code Point)
 DSCP (6 bit) là một phần của trường TOS, được sử dụng để phân loại mức độ ưu tiên của gói tin trong mạng.
-* Vị trí: 6 bit đầu tiên của byte thứ 2 trong IPv4 header.
+* Vị trí: 6 bit đầu tiên của byte thứ 2 trong IPv4 header (Bit 8 -> Bit 13).
 * Chức năng: Giúp các bộ định tuyến (router) ưu tiên xử lý một số gói tin nhất định (ví dụ: thoại, video, dữ liệu quan trọng).
 
 | Tên                     |  Decimal | Binary  | Ứng dụng |
@@ -78,7 +78,7 @@ DSCP (6 bit) là một phần của trường TOS, được sử dụng để ph
 ---
 ###  ECN (Explicit Congestion Notification) 
 ECN là một cơ chế giúp phát hiện và kiểm soát tắc nghẽn mạng mà không cần drop (hủy bỏ) gói tin.
-* Vị trí: ECN là 2 bit cuối cùng của byte DSCP/ECN trong IP Header.
+* Vị trí: ECN là 2 bit cuối cùng của byte DSCP/ECN trong IP Header (Bit 14 -> Bit 15).
 * Ứng dụng: Hỗ trợ kiểm soát tắc nghẽn trong TCP/IP mà không mất gói tin.
 
 | ECN Value | Binary | Ý nghĩa |
@@ -113,7 +113,7 @@ Nếu Total Length > MTU (Maximum Transmission Unit), gói tin sẽ bị chia nh
 ---
 ## Identification
 Identification (ID) là một trường 16-bit trong IP Header.
-* Vị trí: Thuộc byte 4 và 5 (Bit 31 -> Bit 46).
+* Vị trí: Thuộc byte 4 và 5 (Bit 31 -> Bit 47).
 * Úng dụng: Dùng để xác định từng gói tin IP riêng lẻ. Khi một gói tin bị phân mảnh, tất cả các mảnh sẽ có cùng ID để bộ thu có thể ghép lại đúng thứ tự.
 
 ---
@@ -123,7 +123,7 @@ Flags + Fragment Offset là một trường 16-bit trong IP Header.
 
 ---
 ### Flag
-* Vị trí: 3 bit đầu của byte 6 (Bit 47 -> Bit 50).
+* Vị trí: 3 bit đầu của byte 6 (Bit 48 -> Bit 50).
 * Ứng dụng: Flags giúp xác định xem gói tin có bị phân mảnh hay không.
 
 | Bit  | Tên                  | Ý nghĩa |
@@ -152,7 +152,7 @@ Mảnh đầu tiên luôn có Offset = 0.
 
 ## TTL (Time to Live)
 TTL là một trường 8-bit, nằm ở Byte 8 trong IP Header.
-* Vị trí: Byte 8 (Bit 64 -> Bit 79)
+* Vị trí: Byte 8 (Bit 64 -> Bit 71)
 * Ứng dụng: Giới hạn tuổi thọ của một gói tin trong mạng bằng cách giảm dần mỗi khi nó đi qua một router.
 
 ### Cách hoạt động của TTL:
@@ -182,7 +182,7 @@ TTL là một trường 8-bit, nằm ở Byte 8 trong IP Header.
 
 ## Protocol
 Protocol là một trường 8-bit
-* Vị trí: Byte 9 (Bit 80 -> Bit 95)
+* Vị trí: Byte 9 (Bit 72 -> Bit 79)
 * Úng dụng: Xác định giao thức lớp trên mà IP sẽ chuyển tiếp gói tin đến, ví dụ như TCP, UDP, ICMP...
 
 ### Một số giá trị phổ biến của Protocol
@@ -204,16 +204,27 @@ Protocol là một trường 8-bit
 
 ## Header Checksum
 Header Checksum là một trường 16-bit
-* Vị trí: Nằm ở Byte 10 và 11.
+* Vị trí: Nằm ở Byte 10 và 11 (Bit 80 -> Bit 95).
 * Ứng dụng: Header Checksum là một giá trị kiểm tra lỗi, giúp xác định xem header của gói tin IP có bị lỗi trong quá trình truyền hay không.
 
 ### Cách hoạt động:
 1. Trước khi gửi đi, bộ gửi tính toán checksum dựa trên toàn bộ IP Header.
 2. Khi nhận gói tin, bộ nhận tính toán lại checksum và so sánh với giá trị checksum trong header.
 * Nếu khớp, gói tin không bị lỗi.
-* Nếu khác, gói tin bị lỗi và sẽ bị loại bỏ.
+* Nếu khác, gói tin bị lỗi và sẽ bị loại bỏ hoặc yêu cầu gửi lại.
 
-<!-- <script src="https://giscus.app/client.js"
+---
+## Source IP Address
+* Vị trí: Nằm ở Byte 12 - 15 (Bit 96 -> Bit 127)
+* Ứng dụng: Trường này chứa địa chỉ IP nguồn, tức là địa chỉ của thiết bị gửi gói tin.
+
+## Destination IP Address
+* Vị trí: Nằm ở Byte 16 - 19 (Bit 128 - Bit 159)
+* Ứng dung: Destination IP Address chứa địa chỉ IP đích, tức là thiết bị nhận gói tin.
+
+---
+
+<script src="https://giscus.app/client.js"
         data-repo="ybvy/ybvy.github.io"
         data-repo-id="R_kgDONiHcVw"
         data-category="Announcements"
@@ -227,4 +238,4 @@ Header Checksum là một trường 16-bit
         data-lang="vi"
         crossorigin="anonymous"
         async>
-</script> -->
+</script>
