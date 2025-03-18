@@ -31,7 +31,7 @@ IP Header là phần tiêu đề của 1 gói tin IP(Internet Protocol) khi truy
 | 7-9 | Để dành | Dự trữ cho các mục đích tương lai |
 | 10-15 | Không hợp lệ | Không được sử dụng chính thức |
 {:.inner-borders}
-
+---
 ## IHL (Internet Header Length)
 * Vị trí: Octec 0 (Bit 4 -> Bit 7)
 * Chức năng: Xác định kích thước của phần Header
@@ -44,4 +44,4 @@ min(length(header)) = 5 * 4 = 20(bytes) // Header IPv4 chuẩn
 max(length(header)) = 15 * 4 = 60(bytes) 
 {% endhighlight %}
 
-Nếu ở IHL=5 thì chỉ chứa Header IPv4 chuẩn, không có phần Option (giải thích ở dưới). Vì nó chỉ có 20 byte, bắt đầu từ byte 0 đến byte 19, quan sát hình ở trên bạn sẽ thấy phần Option nó xuất hiện từ byte 20.
+Nếu ở IHL=5 thì chỉ chứa Header IPv4 chuẩn, không có phần Option (giải thích ở dưới). Vì nó chỉ có 20 byte, bắt đầu từ byte 0 đến byte 19, quan sát hình ở trên bạn sẽ thấy rằng phần Option nó xuất hiện từ byte 20.
