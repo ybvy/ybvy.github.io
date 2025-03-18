@@ -224,6 +224,22 @@ Header Checksum là một trường 16-bit
 
 ---
 
+## Option
+* Vị trí: Trường Option trong IP Header có kích thước biến đổi và chỉ xuất hiện khi IHL > 5 (tức là header lớn hơn 20 bytes). Nếu không có Option, IP Header mặc định có 20 bytes. Nếu có Option, tổng kích thước header có thể lên tới 60 bytes.
+* Ứng dụng: Trường Option được dùng để thêm thông tin tùy chọn vào gói tin (gỡ lỗi, kiểm tra mạng, bảo mật, quản lý mạng, ...)
+
+| Loại Option              | Mã (Decimal) | Mô tả |
+|--------------------------|-------------|-------------------------------|
+| No Operation (NOP)       | 1           | Giữ khoảng trống, không có tác dụng. |
+| Record Route (RR)        | 7           | Lưu lại địa chỉ các router mà gói tin đi qua. |
+| Timestamp                | 68          | Ghi lại thời gian tại mỗi router. |
+| Strict Source Routing (SSR) | 137     | Chỉ định đường đi cố định của gói tin. |
+| Loose Source Routing (LSR) | 131     | Đề xuất đường đi, có thể thay đổi nếu cần. |
+| Router Alert             | 148         | Báo hiệu gói tin cần xử lý đặc biệt. |
+{:.inner-borders}
+
+---
+
 <script src="https://giscus.app/client.js"
         data-repo="ybvy/ybvy.github.io"
         data-repo-id="R_kgDONiHcVw"
