@@ -53,6 +53,7 @@ TOS (Type of Service) là một trường 8 bit trong IPv4 Header, được sử
 * Vị trí: Octec 1 (Bit 8 -> Bit 15)
 * Chức năng: Được dùng để kiểm soát độ ưu tiên, độ trễ, thông lượng và độ tin cậy của gói tin.
 * Bao gồm 2 thành phần chính: DSCP và ECN
+
 ### DSCP (Differentiated Services Code Point)
 DSCP (6 bit) là một phần của trường TOS, được sử dụng để phân loại mức độ ưu tiên của gói tin trong mạng.
 
@@ -73,6 +74,20 @@ DSCP (6 bit) là một phần của trường TOS, được sử dụng để ph
 | CS6 (Network Control)   | 48                   | 110000  | Gói tin điều khiển mạng (OSPF, BGP) |
 | CS7 (Reserved)          | 56                   | 111000  | Dự trữ |
 {:.inner-borders}
+
+###  ECN (Explicit Congestion Notification) 
+ECN là một cơ chế giúp phát hiện và kiểm soát tắc nghẽn mạng mà không cần drop (hủy bỏ) gói tin.
+* ECN là 2 bit cuối cùng của byte DSCP/ECN trong IP Header.
+* Ứng dụng: Hỗ trợ kiểm soát tắc nghẽn trong TCP/IP mà không mất gói tin.
+
+| ECN Value | Binary | Ý nghĩa |
+|-----------|--------|---------|
+| 00        | 00     | **Not-ECT (Non-ECN Capable Transport)** – Không hỗ trợ ECN |
+| 01        | 01     | **ECT(1) (ECN-Capable Transport 1)** – Hỗ trợ ECN |
+| 10        | 10     | **ECT(0) (ECN-Capable Transport 0)** – Hỗ trợ ECN |
+| 11        | 11     | **CE (Congestion Experienced)** – Xác nhận tắc nghẽn |
+
+---
 
 <!-- <script src="https://giscus.app/client.js"
         data-repo="ybvy/ybvy.github.io"
