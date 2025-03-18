@@ -118,7 +118,7 @@ sniffer.setsockopt(socket.IPPROTO_IP, socket.IP_HDRINCL, 1)
 {% endhighlight %}
 
 ## Bật chế độ Promiscuous Mode trên Windows
-* Windows cần gửi lệnh IOCTL để kích hoạt Promiscuous Mode.
+* Windows cần gửi lệnh `IOCTL` để kích hoạt Promiscuous Mode.
 * Lệnh này nói với driver của card mạng rằng phải bắt tất cả gói tin, thay vì chỉ những gói dành riêng cho máy.
 
 {% highlight python %}
@@ -126,7 +126,7 @@ if os.name == "nt":
     sniffer.ioctl(socket.SIO_RCVALL, socket.RCVALL_ON)
 {% endhighlight %}
 
-* Trên Linux, không cần lệnh này vì SOCK_RAW đã đủ mạnh để bắt gói tin.
+* Trên Linux, không cần lệnh này vì `SOCK_RAW` đã đủ mạnh để bắt gói tin.
 
 ## Nhận và in dữ liệu thô của gói tin
 * Chương trình bắt gói tin và in ra dạng raw (chưa giải mã).
