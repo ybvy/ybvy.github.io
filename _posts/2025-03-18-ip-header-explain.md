@@ -19,7 +19,7 @@ IP Header là phần tiêu đề của 1 gói tin IP(Internet Protocol) khi truy
 ![IP Header](/assets/images/posts/2025-03-18-ip-header-explain/ip_header.png)
 
 # Các thành phần của IP Header
-## version
+## Version
 * Vị trí: Octec 0 (4 Bit đầu)
 * Chức năng: Chỉ định phiên bản của IP packet.
 
@@ -117,7 +117,7 @@ Nếu Total Length > MTU (Maximum Transmission Unit), gói tin sẽ bị chia nh
 
 ## Identification
 Identification (ID) là một trường 16-bit trong IP Header.
-* Vị trí: Thuộc byte 4 và 5.
+* Vị trí: Thuộc byte 4 và 5 (Bit 31 -> Bit 46).
 * Úng dụng: Dùng để xác định từng gói tin IP riêng lẻ. Khi một gói tin bị phân mảnh, tất cả các mảnh sẽ có cùng ID để bộ thu có thể ghép lại đúng thứ tự.
 
 ---
@@ -127,7 +127,7 @@ Flags + Fragment Offset là một trường 16-bit trong IP Header.
 * Vị trí: Nằm ở byte 6 và 7.
 
 ### Flag
-* Vị trí: 3 bit đầu của byte 6.
+* Vị trí: 3 bit đầu của byte 6 (Bit 47 -> Bit 50).
 * Ứng dụng: Flags giúp xác định xem gói tin có bị phân mảnh hay không.
 
 | Bit  | Tên                  | Ý nghĩa |
