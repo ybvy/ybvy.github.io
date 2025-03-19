@@ -13,7 +13,7 @@ tags:
 ---
 
 # Giới thiệu
-Thẻ `\<iframe\>` (Inline Frame) trong HTML được sử dụng để nhúng một tài liệu HTML khác vào bên trong trang web hiện tại. Nó cho phép hiển thị một trang web khác trong một phần tử nhỏ của trang chính.
+Thẻ `<iframe>` (Inline Frame) trong HTML được sử dụng để nhúng một tài liệu HTML khác vào bên trong trang web hiện tại. Nó cho phép hiển thị một trang web khác trong một phần tử nhỏ của trang chính.
 
 ---
 <script src="https://giscus.app/client.js"
