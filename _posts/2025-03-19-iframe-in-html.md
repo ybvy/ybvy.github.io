@@ -1,10 +1,10 @@
 ---
 author: "ybvy"
 layout: post
-title:  "`<iframe>` in HTML"
+title:  "iframe in HTML"
 date: 2025-03-19
 comments: true
-description: Một số điều thú vị về thẻ `<iframe>`
+description: Một số điều thú vị về thẻ iframe
 categories: introduce
 toc: true
 tags: 
