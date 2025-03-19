@@ -386,6 +386,95 @@ class ICMP(Structure):
     ]
 {% endhighlight %}
 
+## Tạo socket raw
+{% highlight python %}
+socket_protocol = socket.IPPROTO_IP if os.name == "nt" else socket.IPPROTO_ICMP
+sniffer = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket_protocol)
+sniffer.bind((HOST, 0))
+sniffer.setsockopt(socket.IPPROTO_IP, socket.IP_HDRINCL, 1)
+{% endhighlight %}
+
+* Raw Socket được sử dụng để bắt gói tin thô.
+* Windows: Dùng IPPROTO_IP, Linux: Dùng IPPROTO_ICMP.
+* IP_HDRINCL = 1: Bao gồm tiêu đề IP trong dữ liệu nhận được.
+
+## Bắt gói tin
+
+{% highlight python %}
+while True:
+    raw_buffer = sniffer.recvfrom(65535)[0]
+    ip_header = IP(raw_buffer[0:20])
+    
+    print("Protocol: %s %s -> %s" % (
+        ip_header.protocol,
+        ip_header.src_address,
+        ip_header.dst_address
+        )
+    )
+{% endhighlight %}
+
+* Nhận dữ liệu từ socket.
+* Giải mã tiêu đề IP để lấy giao thức, địa chỉ nguồn và đích.
+
+## Xử lý gói tin ICMP
+
+{% highlight python %}
+if ip_header.protocol == "ICMP":
+    offset = ip_header.ihl * 4
+    buf = raw_buffer[offset:offset+sizeof(ICMP)]
+    
+    icmp_header = ICMP(buf)
+    print("ICMP -> Type: %d Code: %d" % (
+        icmp_header.type,
+        icmp_header.code
+        )
+    )
+{% endhighlight %}
+
+* Nếu gói tin là ICMP, trích xuất tiêu đề ICMP và in ra type và code.
+
+## Xử lý ngắt chương trình
+
+{% highlight python %}
+except KeyboardInterrupt:
+    if os.name == "nt":
+        sniffer.ioctl(socket.SIO_RCVALL, socket.RCVALL_OFF)
+{% endhighlight %}
+
+* Khi nhấn Ctrl + C, nếu trên Windows, tắt chế độ promiscuous mode (RCVALL_OFF).
+
+## Kết quả
+### Ping
+{% highlight bash %}
+(venv) ┌─[wai@wai]─[~/Documents/Project/Blackhat-python]
+└──╼ $ ping -c 4 8.8.8.8
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=118 time=27.0 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=118 time=38.4 ms
+64 bytes from 8.8.8.8: icmp_seq=3 ttl=118 time=25.2 ms
+64 bytes from 8.8.8.8: icmp_seq=4 ttl=118 time=26.4 ms
+
+--- 8.8.8.8 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3003ms
+rtt min/avg/max/mdev = 25.198/29.237/38.354/5.302 ms
+{% endhighlight %}
+
+### Sniffing
+{% highlight bash %}
+(venv) ┌─[wai@wai]─[~/Documents/Project/Blackhat-python]
+└──╼ $ sudo python3 chapter_3/sniffer_with_icmp.py 
+Protocol: ICMP 8.8.8.8 -> 192.168.1.13
+ICMP -> Type: 0 Code: 0
+Protocol: ICMP 8.8.8.8 -> 192.168.1.13
+ICMP -> Type: 0 Code: 0
+Protocol: ICMP 8.8.8.8 -> 192.168.1.13
+ICMP -> Type: 0 Code: 0
+Protocol: ICMP 8.8.8.8 -> 192.168.1.13
+ICMP -> Type: 0 Code: 0
+{% endhighlight %}
+
+---
+
 <script src="https://giscus.app/client.js"
         data-repo="ybvy/ybvy.github.io"
         data-repo-id="R_kgDONiHcVw"
