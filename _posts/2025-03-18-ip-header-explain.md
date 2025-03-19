@@ -474,10 +474,7 @@ ICMP -> Type: 0 Code: 0
 Protocol: ICMP 8.8.8.8 -> 192.168.1.13
 ICMP -> Type: 0 Code: 0
 {% endhighlight %}
-
-## Lưu ý
-> 
-> 
+ 
 ---
 
 <script src="https://giscus.app/client.js"
