@@ -84,10 +84,10 @@ ECN là một cơ chế giúp phát hiện và kiểm soát tắc nghẽn mạng
 
 | ECN Value | Binary | Ý nghĩa |
 |-----------|--------|---------|
-| 00        | 00     | **Not-ECT (Non-ECN Capable Transport)** – Không hỗ trợ ECN |
-| 01        | 01     | **ECT(1) (ECN-Capable Transport 1)** – Hỗ trợ ECN |
-| 10        | 10     | **ECT(0) (ECN-Capable Transport 0)** – Hỗ trợ ECN |
-| 11        | 11     | **CE (Congestion Experienced)** – Xác nhận tắc nghẽn |
+| 00        | 00     | Not-ECT (Non-ECN Capable Transport) – Không hỗ trợ ECN |
+| 01        | 01     | ECT(1) (ECN-Capable Transport 1) – Hỗ trợ ECN |
+| 10        | 10     | ECT(0) (ECN-Capable Transport 0) – Hỗ trợ ECN |
+| 11        | 11     | CE (Congestion Experienced) – Xác nhận tắc nghẽn |
 
 ---
 ## Total Length
@@ -129,9 +129,9 @@ Flags + Fragment Offset là một trường 16-bit trong IP Header.
 
 | Bit  | Tên                  | Ý nghĩa |
 |------|----------------------|------------------------------------------------|
-| Bit 0 | Reserved            | Luôn bằng **0** (Không sử dụng). |
-| Bit 1 | DF (Don't Fragment) | **1** = Không phân mảnh gói tin.<br>**0** = Cho phép phân mảnh. |
-| Bit 2 | MF (More Fragments) | **1** = Còn nhiều mảnh phía sau.<br>**0** = Đây là mảnh cuối cùng. |
+| Bit 0 | Reserved            | Luôn bằng 0 (Không sử dụng). |
+| Bit 1 | DF (Don't Fragment) | 1 = Không phân mảnh gói tin.<br>0 = Cho phép phân mảnh. |
+| Bit 2 | MF (More Fragments) | 1 = Còn nhiều mảnh phía sau.<br>0 = Đây là mảnh cuối cùng. |
 {:.inner-borders}
 
 ---
@@ -142,7 +142,7 @@ Flags + Fragment Offset là một trường 16-bit trong IP Header.
 | Giá trị | Ý nghĩa |
 |---------|-------------------------------------------------|
 | 0       | Mảnh đầu tiên của gói tin. |
-| n       | Độ dời (offset) của mảnh so với gói tin gốc (tính theo đơn vị **8 byte**). |
+| n       | Độ dời (offset) của mảnh so với gói tin gốc (tính theo đơn vị 8 byte). |
 {:.inner-borders}
 
 * Offset được tính theo 8-byte:
