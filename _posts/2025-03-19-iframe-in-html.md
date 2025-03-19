@@ -1,10 +1,10 @@
 ---
 author: "ybvy"
 layout: post
-title:  "Iframe in Html"
+title:  "<Iframe> in HTML"
 date: 2025-03-19
 comments: true
-description: Một số điều thú vị về thẻ iframe
+description: Một số điều thú vị về thẻ <iframe>
 categories: introduce
 toc: true
 tags: 
@@ -15,6 +15,7 @@ tags:
 # Giới thiệu
 
 
+---
 <script src="https://giscus.app/client.js"
         data-repo="ybvy/ybvy.github.io"
         data-repo-id="R_kgDONiHcVw"
