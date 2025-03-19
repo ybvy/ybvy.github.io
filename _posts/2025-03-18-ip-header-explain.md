@@ -351,7 +351,7 @@ Code có khả năng phân tích tiêu đề của các gói tin IP và ICMP.
 
 ---
 
-## Lớp `IP` - Phân tích tiêu đề IP
+## Lớp IP - Phân tích tiêu đề IP
 Lớp IP dùng để biểu diễn tiêu đề của gói tin IP.
 
 {% highlight python %}
