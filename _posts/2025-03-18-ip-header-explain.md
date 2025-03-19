@@ -336,6 +336,54 @@ except KeyboardInterrupt:
     if os.name == "nt":
         sniffer.ioctl(socket.SIO_RCVALL, socket.RCVALL_OFF)
 {% endhighlight %}
+
+## Tổng quan
+Đoạn code này là một **sniffer** (bộ thu thập gói tin) đơn giản được viết bằng Python. Nó sử dụng **Raw Socket** để bắt các gói tin trên một địa chỉ IP cụ thể (`192.168.1.13`).  
+Code có khả năng phân tích tiêu đề của các gói tin IP và ICMP.
+
+---
+
+## Các thư viện được sử dụng
+- `socket`: Hỗ trợ làm việc với socket mạng.
+- `os`: Kiểm tra hệ điều hành (Windows hoặc Linux).
+- `struct`: Hỗ trợ xử lý dữ liệu nhị phân.
+- `ctypes`: Định nghĩa cấu trúc dữ liệu ở cấp thấp.
+
+---
+
+## Lớp `IP` - Phân tích tiêu đề IP
+Lớp `IP` dùng để biểu diễn tiêu đề của gói tin IP.
+
+```python
+class IP(Structure):
+    _fields_ = [
+        ("ihl", c_ubyte, 4),  # Độ dài phần header IP
+        ("version", c_ubyte, 4),  # Phiên bản IP (IPv4 hoặc IPv6)
+        ("tos", c_ubyte),  # Type of Service
+        ("len", c_ushort),  # Độ dài tổng cộng của gói tin
+        ("id", c_ushort),  # ID của gói tin
+        ("offset", c_ushort),  # Phân mảnh
+        ("ttl", c_ubyte),  # Thời gian sống (Time To Live)
+        ("protocol_num", c_ubyte),  # Giao thức (ICMP, TCP, UDP)
+        ("sum", c_ushort),  # Checksum
+        ("src", c_uint32),  # Địa chỉ nguồn
+        ("dst", c_uint32)  # Địa chỉ đích
+    ]
+
+* **__new__()**: Tạo đối tượng từ dữ liệu nhị phân.
+* **__init__()**: Trích xuất địa chỉ nguồn và đích từ dữ liệu IP.
+
+## Lớp ICMP biểu diễn tiêu đề của gói tin ICMP.
+```python
+class ICMP(Structure):
+    _fields_ = [
+        ("type", c_ubyte),  # Loại ICMP (Echo Request, Echo Reply, ...)
+        ("code", c_ubyte),  # Mã lỗi (nếu có)
+        ("checksum", c_ushort),  # Checksum để kiểm tra lỗi
+        ("unused", c_ushort),
+        ("next_hop_mtu", c_ushort),
+    ]
+
 <script src="https://giscus.app/client.js"
         data-repo="ybvy/ybvy.github.io"
         data-repo-id="R_kgDONiHcVw"
