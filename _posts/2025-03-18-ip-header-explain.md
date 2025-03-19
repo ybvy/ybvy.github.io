@@ -432,6 +432,8 @@ if ip_header.protocol == "ICMP":
 {% endhighlight %}
 
 * Nếu gói tin là ICMP, trích xuất tiêu đề ICMP và in ra type và code.
+* IHL=5 ở đây sẽ là 5, nên Header Length là 20 byte, không chứa phần `Option`
+* Vị trí của gói tin ICMP bắt đầu từ Byte thứ 20, mở rộng đến `+ sizeof(ICMP)`
 
 ## Xử lý ngắt chương trình
 
@@ -473,6 +475,9 @@ Protocol: ICMP 8.8.8.8 -> 192.168.1.13
 ICMP -> Type: 0 Code: 0
 {% endhighlight %}
 
+## Lưu ý
+> 
+> 
 ---
 
 <script src="https://giscus.app/client.js"
