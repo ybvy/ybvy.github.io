@@ -352,9 +352,9 @@ Code có khả năng phân tích tiêu đề của các gói tin IP và ICMP.
 ---
 
 ## Lớp `IP` - Phân tích tiêu đề IP
-Lớp `IP` dùng để biểu diễn tiêu đề của gói tin IP.
+Lớp IP dùng để biểu diễn tiêu đề của gói tin IP.
 
-```python
+{% highlight python %}
 class IP(Structure):
     _fields_ = [
         ("ihl", c_ubyte, 4),  # Độ dài phần header IP
@@ -369,12 +369,13 @@ class IP(Structure):
         ("src", c_uint32),  # Địa chỉ nguồn
         ("dst", c_uint32)  # Địa chỉ đích
     ]
-
+{% endhighlight %}
 * **__new__()**: Tạo đối tượng từ dữ liệu nhị phân.
 * **__init__()**: Trích xuất địa chỉ nguồn và đích từ dữ liệu IP.
 
 ## Lớp ICMP biểu diễn tiêu đề của gói tin ICMP.
-```python
+
+{% highlight python %}
 class ICMP(Structure):
     _fields_ = [
         ("type", c_ubyte),  # Loại ICMP (Echo Request, Echo Reply, ...)
@@ -383,6 +384,7 @@ class ICMP(Structure):
         ("unused", c_ushort),
         ("next_hop_mtu", c_ushort),
     ]
+{% endhighlight %}
 
 <script src="https://giscus.app/client.js"
         data-repo="ybvy/ybvy.github.io"
