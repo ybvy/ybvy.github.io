@@ -360,7 +360,9 @@ result = sys.modules[module].run()
 * Sau khi có result của mỗi module, thực hiện `store_module_result`, up dữ liệu lên Github Repository.
 
 ---
+
 Vấn đề còn lại là cách để người dùng mắc bẫy để thực thi và ẩn mình để không bị hệ thống phát hiện.
+
 ---
 
 <script src="https://giscus.app/client.js"
