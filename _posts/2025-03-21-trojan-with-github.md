@@ -236,6 +236,42 @@ def get_file_content(dir_name, module_name, repo: github3.repos.Repository) -> b
 {% endhighlight %}
 Hàm này đọc nội dung của 1 file thông qua **Repository Object**, trả về dữ liệu dạng bytes.
 
+> GitImporter class
+{% highlight bash %}
+class GitImporter:
+    """Custom module loader to fetch and execute modules from GitHub."""
+    def __init__(self, repo):
+        self.current_module_code = ""
+        self.repo = repo
+
+    def find_module(self, name, path=None):
+        print(f"[*] Attempting to retrieve {name}")
+        try:
+            new_lib = get_file_content('modules', f'{name}.py', self.repo)
+            if new_lib:
+                self.current_module_code = new_lib.decode('utf-8')  
+                return self
+        except Exception as e:
+            print(f"[!] Error retrieving module {name}: {e}")
+        return None
+
+    def load_module(self, name):
+        if name in sys.modules:
+            return sys.modules[name]
+
+        spec = importlib.util.spec_from_loader(name, loader=None)
+        new_module = importlib.util.module_from_spec(spec)
+
+        try:
+            exec(self.current_module_code, new_module.__dict__)
+        except SyntaxError as e:
+            print(f"[!] Syntax error in module {name}: {e}")
+            return None 
+
+        sys.modules[name] = new_module
+        return new_module
+{% endhighlight %}
+
 <script src="https://giscus.app/client.js"
         data-repo="ybvy/ybvy.github.io"
         data-repo-id="R_kgDONiHcVw"
