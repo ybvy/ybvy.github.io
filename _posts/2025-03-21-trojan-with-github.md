@@ -72,6 +72,24 @@ def run(**args):
 Ở 2 module này đều có phương thức `run` để tiện cho việc gọi hàm, trả lại dữ liệu sau khi thực thi.
 Có thể thêm các module khác tùy ý.
 
+---
+## Config
+
+>abc.json
+{:.filename}
+{% highlight json linenos %}
+[
+    {
+        "module": "dirlister"
+    },
+    {
+        "module": "environment"
+    }
+]
+{% endhighlight %}
+
+Config này chứa tên các module cần chạy, để `git_trojan.py` lấy danh sách module cần chạy, **import** các module cần thiết từ **modules**.
+
 >git_trojan.py
 {:.filename}
 {% highlight python linenos %}
