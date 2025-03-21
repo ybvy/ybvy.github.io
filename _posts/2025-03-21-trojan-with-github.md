@@ -272,6 +272,21 @@ class GitImporter:
         return new_module
 {% endhighlight %}
 
+Khi bạn import 1 module trong **Python**:
+1. Python sẽ tìm kiếm module từ thư mục hệ thống hoặc các đường dẫn tùy chỉnh.
+2. Nếu không tìm thấy, nó kiểm tra các loader tùy chỉnh trong sys.meta_path.
+3. Nếu có loader có phương thức **find_module()**, Python gọi:
+{% highlight bash %}
+loader = GitImporter().find_module('my_remote_module')
+{% endhighlight %}
+* `name = "my_remote_module"` được truyền tự động bởi Python. Tức, khi bạn **import** 1 module mà nó không có sẵn thì `name` là tên của module không có sẵn đó.
+4. Nếu **find_module()** trả về một đối tượng hợp lệ, Python sẽ gọi tiếp:
+{% highlight bash %}
+loader.load_module('my_remote_module')
+{% endhighlight %}
+* `name = "my_remote_module"` lại được truyền vào load_module() tự động.
+Nhờ đó, dù bạn không gọi load_module() trực tiếp, Python vẫn truyền vào name đúng.
+
 <script src="https://giscus.app/client.js"
         data-repo="ybvy/ybvy.github.io"
         data-repo-id="R_kgDONiHcVw"
