@@ -77,7 +77,7 @@ Có thể thêm các module khác tùy ý.
 
 >abc.json
 {:.filename}
-{% highlight json linenos %}
+{% highlight json %}
 [
     {
         "module": "dirlister"
@@ -89,6 +89,8 @@ Có thể thêm các module khác tùy ý.
 {% endhighlight %}
 
 Config này chứa tên các module cần chạy, để `git_trojan.py` lấy danh sách module cần chạy, **import** các module cần thiết từ **modules**.
+* Sau khi tạo được modules và config, up lên Github repository. 
+* `git_trojan.py` là file chạy chính của trojan, nó sẽ lấy danh sách các module cần chạy từ **config** và **import** các module từ **modules**.
 
 >git_trojan.py
 {:.filename}
