@@ -364,7 +364,6 @@ result = sys.modules[module].run()
 Vấn đề còn lại là cách để người dùng mắc bẫy để thực thi và ẩn mình để không bị hệ thống phát hiện.
 
 ---
-
 <script src="https://giscus.app/client.js"
         data-repo="ybvy/ybvy.github.io"
         data-repo-id="R_kgDONiHcVw"
