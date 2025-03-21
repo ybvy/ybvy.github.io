@@ -2,7 +2,7 @@
 author: "ybvy"
 layout: post
 title:  "How to create Trojan tool with Github"
-date: 2025-03-18
+date: 2025-03-21
 comments: true
 description: Cách tạo Trojan tool với Github
 categories: introduce
