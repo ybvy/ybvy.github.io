@@ -344,14 +344,14 @@ class Trojan:
             time.sleep(random.randint(30*60, 3*60*60))
 {% endhighlight %}
 
-2. Hàm **get_config** gọi đến **get_file_content** để lấy tên các module cần chạy trên Github Repository.
+1) Hàm **get_config** gọi đến **get_file_content** để lấy tên các module cần chạy trên Github Repository.
 * Khi lấy được danh sách các module thì nó sẽ import.
 {% highlight bash %}
 __import__(task['module'])
 {% endhighlight %}
 * Chính từ dòng này, khi import mà không có module sẵn trên hệ thống cục bộ, Python sẽ tìm nạp module từ **GitImporter** và `name` được truyền từ tên các module này.
 
-2. Hàm **run** sẽ thực hiện vòng lặp vô tận, sẽ ngủ 30' đến 3h để  hạn chế bị hệ thông phát hiện.
+2) Hàm **run** sẽ thực hiện vòng lặp vô tận, sẽ ngủ 30' đến 3h để  hạn chế bị hệ thông phát hiện.
 * Cứ sau thời gian quy định như vậy, nó sẽ lấy module từ Github Repository và import.
 * Sau khi import, nó thực thi các module theo từ `Thread`, cứ cách 1 đến 10 giây sẽ thực hiện module tiếp theo. Hàm được chạy ở đây là `module_runner`
 {% highlight bash %}
