@@ -216,7 +216,7 @@ if __name__ == "__main__":
 
 ### Giải thích
 
-> Github connect function
+> github_connect function
 {% highlight bash %}
 def github_connect(token_path='path_to_personal_access_token_file', owner='owner', repo='repo_name') -> github3.repos.Repository:
     """Connects to the GitHub repository."""
@@ -225,17 +225,16 @@ def github_connect(token_path='path_to_personal_access_token_file', owner='owner
     return github3.login(token=token).repository(owner, repo)
 {% endhighlight %}
 Hàm này sử dụng `github3` kết nối, xác thực với Github thông qua **Persional Access Token**, trả về  **Repository Object**.
-Có thể thay thế `token_path='path_to_personal_access_token_file'` bằng token trực tiếp.
+Có thể thay thế `token_path='path_to_personal_access_token_file'` bằng token trực tiếp và bỏ phần đọc file.
 
-
-> Github connect function
+> get_file_content function
 {% highlight bash %}
-def github_connect(token_path='path_to_personal_access_token_file', owner='owner', repo='repo_name') -> github3.repos.Repository:
-    """Connects to the GitHub repository."""
-    with open(token_path) as f:
-        token = f.read().strip()
-    return github3.login(token=token).repository(owner, repo)
+def get_file_content(dir_name, module_name, repo: github3.repos.Repository) -> bytes:
+    """Fetch file content from GitHub repository."""
+    file: Contents = repo.file_contents(f"{dir_name}/{module_name}")
+    return file.decoded
 {% endhighlight %}
+Hàm này đọc nội dung của 1 file thông qua **Repository Object**, trả về dữ liệu dạng bytes.
 
 <script src="https://giscus.app/client.js"
         data-repo="ybvy/ybvy.github.io"
