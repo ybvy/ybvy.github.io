@@ -92,6 +92,8 @@ Config chứa tên các module cần chạy.
 * Sau khi tạo được modules và config, up lên Github repository. 
 * `git_trojan.py` là file chạy chính của trojan, nó sẽ lấy danh sách các module cần chạy từ **config** và **import** các module từ **modules**.
 
+---
+## Main
 >git_trojan.py
 {:.filename}
 {% highlight python linenos %}
@@ -212,7 +214,28 @@ if __name__ == "__main__":
     Trojan('abc', repo).run()
 {% endhighlight %}
 
+### Giải thích
 
+> Github connect function
+{% highlight bash %}
+def github_connect(token_path='path_to_personal_access_token_file', owner='owner', repo='repo_name') -> github3.repos.Repository:
+    """Connects to the GitHub repository."""
+    with open(token_path) as f:
+        token = f.read().strip()
+    return github3.login(token=token).repository(owner, repo)
+{% endhighlight %}
+Hàm này sử dụng `github3` kết nối, xác thực với Github thông qua **Persional Access Token**, trả về  **Repository Object**.
+Có thể thay thế `token_path='path_to_personal_access_token_file'` bằng token trực tiếp.
+
+
+> Github connect function
+{% highlight bash %}
+def github_connect(token_path='path_to_personal_access_token_file', owner='owner', repo='repo_name') -> github3.repos.Repository:
+    """Connects to the GitHub repository."""
+    with open(token_path) as f:
+        token = f.read().strip()
+    return github3.login(token=token).repository(owner, repo)
+{% endhighlight %}
 
 <script src="https://giscus.app/client.js"
         data-repo="ybvy/ybvy.github.io"
