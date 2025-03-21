@@ -90,7 +90,7 @@ Có thể thêm các module khác tùy ý.
 
 Config chứa tên các module cần chạy.
 - Sau khi tạo được modules và config, up lên Github repository. 
-- `git_trojan.py` là file chạy chính của trojan, nó sẽ lấy danh sách các module cần chạy từ **config** và **import** các module từ **modules**.
+- `git_trojan.py` là file chạy chính của trojan, nó sẽ lấy danh sách các module cần chạy từ **config** và import các module từ **modules**.
 
 ---
 ## Main
@@ -279,7 +279,7 @@ Khi import 1 module trong **Python**:
 {% highlight bash %}
 loader = GitImporter().find_module('my_remote_module')
 {% endhighlight %}
-* `name = "my_remote_module"` được truyền tự động bởi Python. Tức, khi **import** 1 module mà nó không có sẵn thì `name` là tên của module không có sẵn đó.
+* `name = "my_remote_module"` được truyền tự động bởi Python. Tức, khi import 1 module mà nó không có sẵn thì `name` là tên của module không có sẵn đó.
 * Nếu **find_module()** trả về một đối tượng hợp lệ, Python sẽ gọi tiếp:
 {% highlight bash %}
 loader.load_module('my_remote_module')
@@ -344,6 +344,20 @@ class Trojan:
             time.sleep(random.randint(30*60, 3*60*60))
 {% endhighlight %}
 
+1. Hàm **get_config** gọi đến **get_file_content** để lấy tên các module cần chạy trên Github Repository.
+* Khi lấy được danh sách các module thì nó sẽ import.
+{% highlight bash %}
+__import__(task['module'])
+{% endhighlight %}
+* Chính từ dòng này, khi import mà không có module sẵn trên hệ thống cục bộ, Python sẽ tìm nạp module từ **GitImporter** và `name` được truyền từ tên các module này.
+2. Hàm **run** sẽ thực hiện vòng lặp vô tận, sẽ ngủ 30' đến 3h để  hạn chế bị hệ thông phát hiện.
+* Cứ sau thời gian quy định như vậy, nó sẽ lấy module từ Github Repository và import.
+* Sau khi import, nó thực thi các module theo từ `Thread`, cứ cách 1 đến 10 giây sẽ thực hiện module tiếp theo. Hàm được chạy ở đây là `module_runner`
+{% highlight bash %}
+result = sys.modules[module].run()
+{% endhighlight %}
+* `module_runner` sẽ chạy các module đã được import thông qua hàm **run()** đã được tạo trong mỗi module.
+* Sau khi có result của mỗi module, thực hiện `store_module_result`, up dữ liệu lên Github Repository.
 ---
 
 <script src="https://giscus.app/client.js"
