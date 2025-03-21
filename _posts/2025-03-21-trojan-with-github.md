@@ -89,8 +89,8 @@ Có thể thêm các module khác tùy ý.
 {% endhighlight %}
 
 Config chứa tên các module cần chạy.
-* Sau khi tạo được modules và config, up lên Github repository. 
-* `git_trojan.py` là file chạy chính của trojan, nó sẽ lấy danh sách các module cần chạy từ **config** và **import** các module từ **modules**.
+- Sau khi tạo được modules và config, up lên Github repository. 
+- `git_trojan.py` là file chạy chính của trojan, nó sẽ lấy danh sách các module cần chạy từ **config** và **import** các module từ **modules**.
 
 ---
 ## Main
