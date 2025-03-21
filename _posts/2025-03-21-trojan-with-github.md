@@ -344,7 +344,7 @@ class Trojan:
             time.sleep(random.randint(30*60, 3*60*60))
 {% endhighlight %}
 
-1. Hàm **get_config** gọi đến **get_file_content** để lấy tên các module cần chạy trên Github Repository.
+2. Hàm **get_config** gọi đến **get_file_content** để lấy tên các module cần chạy trên Github Repository.
 * Khi lấy được danh sách các module thì nó sẽ import.
 {% highlight bash %}
 __import__(task['module'])
