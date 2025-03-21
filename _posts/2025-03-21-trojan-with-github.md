@@ -41,11 +41,38 @@ bhptrojan
 ├── git_trojan.py
 ├── modules
 │   ├── dirlister.py
-│   └── enviroment.py
+│   └── environment.py
 └── my_token.txt
 {% endhighlight %}
 
+---
+## Module
 >Python
+{:.dirlister.py}
+{% highlight python lineos %}
+import os
+
+def run(**args):
+    print("[*] In dirlister module.")
+    files = os.listdir('.')
+    return str(files)
+{% endhighlight %}
+
+>Python
+{:.environment.py}
+{% highlight python lineos %}
+import os
+
+def run(**args):
+    print("[*] In enviroment module.")
+    return os.environ
+{% endhighlight %}
+
+Ở 2 module này đều có phương thức `run` để tiện cho việc gọi hàm, trả lại dữ liệu sau khi thực thi.
+Có thể thêm các module khác tùy ý.
+
+>Python
+{:.git_trojan.py}
 {% highlight python lineos %}
 import base64
 import github3
