@@ -11,5 +11,5 @@ tags:
 ---
 
 <video width="640" height="360" autoplay loop>
-    <source src="assets/video/neu_50_nam_sau.mp4" type="video/mp4">
+    <source src="/assets/video/neu_50_nam_sau.mp4" type="video/mp4">
 </video>
