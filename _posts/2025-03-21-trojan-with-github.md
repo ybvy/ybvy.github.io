@@ -32,7 +32,6 @@ Trojan không tự nhân bản như virus hay sâu máy tính (worm), mà thư�
 ---
 # Code Trojan with Github
 
->Bash
 {% highlight bash %}
 bhptrojan
 ├── config
@@ -47,9 +46,10 @@ bhptrojan
 
 ---
 ## Module
+
 >Python
 {:.dirlister.py}
-{% highlight python lineos %}
+{% highlight python linenos %}
 import os
 
 def run(**args):
@@ -60,7 +60,7 @@ def run(**args):
 
 >Python
 {:.environment.py}
-{% highlight python lineos %}
+{% highlight python linenos %}
 import os
 
 def run(**args):
@@ -73,7 +73,7 @@ Có thể thêm các module khác tùy ý.
 
 >Python
 {:.git_trojan.py}
-{% highlight python lineos %}
+{% highlight python linenos %}
 import base64
 import github3
 import github3.repos
