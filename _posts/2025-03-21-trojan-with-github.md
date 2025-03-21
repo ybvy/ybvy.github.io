@@ -280,6 +280,7 @@ Khi bạn import 1 module trong **Python**:
 loader = GitImporter().find_module('my_remote_module')
 {% endhighlight %}
 * `name = "my_remote_module"` được truyền tự động bởi Python. Tức, khi bạn **import** 1 module mà nó không có sẵn thì `name` là tên của module không có sẵn đó.
+
 4. Nếu **find_module()** trả về một đối tượng hợp lệ, Python sẽ gọi tiếp:
 {% highlight bash %}
 loader.load_module('my_remote_module')
