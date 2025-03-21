@@ -273,9 +273,9 @@ class GitImporter:
 {% endhighlight %}
 
 Khi import 1 module trong **Python**:
-1. Python sẽ tìm kiếm module từ thư mục hệ thống hoặc các đường dẫn tùy chỉnh.
-2. Nếu không tìm thấy, nó kiểm tra các loader tùy chỉnh trong sys.meta_path.
-3. Nếu có loader có phương thức **find_module()**, Python gọi:
+1) Python sẽ tìm kiếm module từ thư mục hệ thống hoặc các đường dẫn tùy chỉnh.
+2) Nếu không tìm thấy, nó kiểm tra các loader tùy chỉnh trong sys.meta_path.
+3) Nếu có loader có phương thức **find_module()**, Python gọi:
 {% highlight bash %}
 loader = GitImporter().find_module('my_remote_module')
 {% endhighlight %}
