@@ -1,13 +1,13 @@
 ---
 layout: page
-title: About ybvy
+title: About waibui
 shortName: about
 ---
 
-# ybvy(Y Bui)
+# waibui(Y Bui)
 `Student`
 
-Da Nang City, Vietnam | buivanyk4@gmail.com | [ybvy.github.io](https://ybvy.github.io) | [github.com/ybvy](https://github.com/ybvy)
+Da Nang City, Vietnam | buivanyk4@gmail.com | [waibui.github.io](https://waibui.github.io) | [github.com/waibui](https://github.com/waibui)
 
 # EXECUTIVE SUMMARY
 
