@@ -1,5 +1,5 @@
 ---
-author: "ybvy"
+author: "waibui"
 layout: post
 title:  "How did I create this blog website?"
 date: 2025-01-01
@@ -57,7 +57,7 @@ Cuối cùng dán script vào cuối cùng của mỗi bài viết cần bình l
 Good luck!🍀🍀🍀
 
 <script src="https://giscus.app/client.js"
-        data-repo="ybvy/ybvy.github.io"
+        data-repo="waibui/waibui.github.io"
         data-repo-id="R_kgDONiHcVw"
         data-category="Announcements"
         data-category-id="DIC_kwDONiHcV84ClolG"

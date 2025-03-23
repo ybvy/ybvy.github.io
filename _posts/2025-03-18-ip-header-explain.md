@@ -1,5 +1,5 @@
 ---
-author: "ybvy"
+author: "waibui"
 layout: post
 title:  "IP Header Explain"
 date: 2025-03-18
@@ -478,7 +478,7 @@ ICMP -> Type: 0 Code: 0
 ---
 
 <script src="https://giscus.app/client.js"
-        data-repo="ybvy/ybvy.github.io"
+        data-repo="waibui/waibui.github.io"
         data-repo-id="R_kgDONiHcVw"
         data-category="Announcements"
         data-category-id="DIC_kwDONiHcV84ClolG"

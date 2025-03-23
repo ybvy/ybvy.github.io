@@ -1,5 +1,5 @@
 ---
-author: "ybvy"
+author: "waibui"
 layout: post
 title:  "Hi there!"
 date: 2024-12-25
@@ -10,7 +10,7 @@ tags:
 - me
 ---
 
-First of all, I’m ybvy (Bui Van Y) in case this is the first time you’ve read my things ;).
+First of all, I’m waibui (Bui Van Y) in case this is the first time you’ve read my things ;).
 
 This blog to share my experiences in life. Hope you can find useful information here.
 

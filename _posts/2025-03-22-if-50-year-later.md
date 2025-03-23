@@ -1,5 +1,5 @@
 ---
-author: "ybvy"
+author: "waibui"
 layout: post
 title:  "If 50 year later"
 date: 2025-03-22
@@ -12,7 +12,7 @@ tags:
 
 ---
 
-<video width="100%" autoplay loop>
+<video width="0%" autoplay loop>
     <source src="/assets/video/neu_50_nam_sau.mp4" type="video/mp4">
 </video>
 

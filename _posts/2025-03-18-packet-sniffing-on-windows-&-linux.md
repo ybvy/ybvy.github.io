@@ -1,5 +1,5 @@
 ---
-author: "ybvy"
+author: "waibui"
 layout: post
 title:  "Packet sniffing on Windows and Linux"
 date: 2025-03-18
@@ -177,7 +177,7 @@ if os.name == "nt":
 [Blackhat Python Code](https://github.com/EONRaider/blackhat-python3)
 
 <script src="https://giscus.app/client.js"
-        data-repo="ybvy/ybvy.github.io"
+        data-repo="waibui/waibui.github.io"
         data-repo-id="R_kgDONiHcVw"
         data-category="Announcements"
         data-category-id="DIC_kwDONiHcV84ClolG"

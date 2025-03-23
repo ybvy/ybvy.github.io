@@ -1,5 +1,5 @@
 ---
-author: "ybvy"
+author: "waibui"
 layout: post
 title:  "How to create Trojan tool with Github"
 date: 2025-03-21
@@ -366,7 +366,7 @@ Vấn đề còn lại là cách để người dùng mắc bẫy để thực t
 
 ---
 <script src="https://giscus.app/client.js"
-        data-repo="ybvy/ybvy.github.io"
+        data-repo="waibui/waibui.github.io"
         data-repo-id="R_kgDONiHcVw"
         data-category="Announcements"
         data-category-id="DIC_kwDONiHcV84ClolG"
