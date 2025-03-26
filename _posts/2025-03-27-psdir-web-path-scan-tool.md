@@ -14,11 +14,13 @@ tags:
 ---
 
 # Giới thiệu
+---
 Đây là security tool đầu tay của tay mơ waibui, code tuy lỏ nhưng chạy đủ nhanh, option vừa đủ phục vụ cho nhu cầu pentest của tui.
 Thực ra có rất nhiều tool mạnh mẽ và nhiều chức năng hơn, nhưng dùng cái do mình tự tạo ra cảm thấy thỏa mãn, custom tùy ý, không sợ cái mẹ chi hết...
 Tui tạo cái này do nhu cầu của tui, phân tích riết cũng mệt, code cho vui nhà vui cửa...
 
 # Cấu trúc
+---
 {% highlight bash %}
 psdir
 .
@@ -52,6 +54,54 @@ psdir
 ├── requirements.txt
 └── setup.py
 {% endhighlight %}
+
+# Installation
+---
+1. Sử dụng git: `git clone https://github.com/waibui/psdir.git`
+2. Tải zip file: [https://github.com/waibui/psdir.git](https://github.com/waibui/psdir/archive/refs/heads/main.zip)
+
+# Options
+---
+{% highlight bash %}
+Usage: psdir.py [-u|--url] target [options].
+Choose -h/--help option for more detail.
+
+Options:
+  --version             show program's version number and exit
+  -h, --help            show this help message and exit
+
+  CORE SETTINGS:
+    -u URL, --url=URL   Target URL, eg: https://example.com,
+                        http://example.com
+    -w WORDLISTS, --wordlists=WORDLISTS
+                        Wordlist files or directories contain wordlists
+    --ua=USER_AGENT, --user-agent=USER_AGENT
+                        User-Agent files or directories contain useragent
+
+  PERFORMENT & REQUEST SETTINGS:
+    -t THREADS, --threads=THREADS
+                        Number of threads (default: 40)
+    --to=TIMEOUT, --timeout=TIMEOUT
+                        Connection timeout in seconds
+    -m METHOD, --http-method=METHOD
+                        HTTP method (default: GET)
+    --mc=MATCH_CODE, --match-code=MATCH_CODE
+                        Match HTTP status code
+                        (default:200,204,301,302,307,401,403)
+    --cookie=COOKIE     The cookie of the requests, eg: key:value
+    --proxies=PROXY     PROXY for requests, eg:
+                        https://username:password@proxy.example.com:8080,
+                        https://proxy.example.com:8080
+    --ar=ALLOW_REDIRECT, --allow-redirect=ALLOW_REDIRECT
+                        Accept redirect in request
+
+  OUTPUT & LOGGING SETTINGS:
+    -o FILE, --output=FILE
+                        Save output to a file
+
+See 'core/setting.py' for the example configuration file
+{% endhighlight %}
+
 
 <script src="https://giscus.app/client.js"
         data-repo="waibui/waibui.github.io"
